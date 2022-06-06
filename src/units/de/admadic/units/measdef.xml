@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<measdef>
+	<measures>
+		<measure id="m0" qid="v" value="10.0" uid=".m:s" />
+		<measure id="m1" qid="F" value="20.0" uid=".N" />
+	</measures>
+</measdef>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quantdef>
+	<quantities>
+		<quantity id="@temperature" symbol="T" name="Temperature" unit=".K" />
+		<quantity id="@length" symbol="l" name="Length" unit=".m" />
+		<quantity id="@force" symbol="F" name="Force" unit=".N" />
+		<quantity id="@area" symbol="A" name="Area" unit=".m.m" />
+		<quantity id="@mass" symbol="m" name="Mass" unit=".g" />
+		<quantity id="@velocity" symbol="v" name="Velocity" unit=".m:s" />
+		<quantity id="@stress" symbol="S" name="Stress" unit="*M.Pa" />
+		<quantity id="@strain" symbol="e" name="Strain" unit=".percent" />
+		<quantity id="@moduli" symbol="E" name="Moduli" unit="*M.Pa" />
+		<quantity id="@ratio" symbol="r" name="Ratio" unit=".ratio1" />
+		<quantity id="@work" symbol="W" name="Work" unit=".J" />
+		<quantity id="@energy" symbol="E" name="Energy" unit=".J" />
+		<quantity id="@power" symbol="P" name="Power" unit=".W" />
+		<quantity id="@density" symbol="rho" name="Density" unit="*k.g:m:m:m" />
+	</quantities>
+</quantdef>

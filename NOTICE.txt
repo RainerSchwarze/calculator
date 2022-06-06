@@ -1,0 +1,15 @@
+This product includes software developed at
+The Apache Software Foundation (http://www.apache.org/).
+
+This product includes images from the Tango Desktop Project
+(http://tango.freedesktop.org/).
+
+This product includes images from the Pasodoble Icon Theme
+(http://www.jesusda.com/projects/pasodoble).
+
+This product includes software developed by Karsten Lentzsch.
+(https://www.jgoodies.com/)
+
+This product includes software developed by L2FProd.com
+(http://www.L2FProd.com/).
+

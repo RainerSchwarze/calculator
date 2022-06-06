@@ -1,0 +1,19 @@
+#format=1.0
+
+# input tests:
+
+# seq	= inputs	-> type op	value	subex lastsubres	curres
+
+test	= input simple 1
+seq		= 1	0 + 	-> op "" <null> "10.0" "0.0" "10.0"
+seq		= 2	0 + 	-> op "+" <null> "20.0" "10.0" "30.0"
+seq		= = 		-> rs "=" <null> "30.0" "30.0" "30.0"
+endtest
+
+test	= input percent 1
+seq		= 1	0 + 	-> op "" <null> "10.0" "0.0" "10.0"
+seq		= 2	0 % 	-> sx "+" "20.0%_x_10.0" "2.0" "10.0" "12.0"
+# seq		= = 		-> rs "=" <null> "12.0" "12.0" "12.0"
+endtest
+
+# end of file

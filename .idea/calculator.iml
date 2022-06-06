@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$" />
+    <orderEntry type="jdk" jdkName="11" jdkType="JavaSDK" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="forms-1.0.7" level="project" />
+    <orderEntry type="library" name="mesp-1.02" level="project" />
+    <orderEntry type="library" name="nanoxml-2.2.1" level="project" />
+    <orderEntry type="library" name="skinlf" level="project" />
+    <orderEntry type="library" name="liquidlnf" level="project" />
+    <orderEntry type="library" name="lafx-skinlf" level="project" />
+  </component>
+</module>

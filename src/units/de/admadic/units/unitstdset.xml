@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<unitdef>
+	<fields>
+		<field id="%aph" name="Astrophysics" />
+		<field id="%amo" name="Atomic, molecular and optical physics" />
+		<field id="%pph" name="Particle physics" />
+		<field id="%cmp" name="Condensed matter physics" />
+	</fields>
+
+	<subfields>
+		<subfield fid="%aph" id="$cos" name="Cosmology" />
+		<subfield fid="%aph" id="$pla" name="Planetary science" />
+		<subfield fid="%aph" id="$psm" name="Plasma physics" />
+
+		<subfield fid="%amo" id="$atm" name="Atomic physics" />
+		<subfield fid="%amo" id="$mol" name="Molecular physics" />
+		<subfield fid="%amo" id="$che" name="Chemical physics" />
+		<subfield fid="%amo" id="$opt" name="Optics" />
+		<subfield fid="%amo" id="$pho" name="Photonics" />
+
+		<subfield fid="%pph" id="$acc" name="Accelerator physics" />
+		<subfield fid="%pph" id="$nuc" name="Nuclear physics" />
+		<subfield fid="%pph" id="$par" name="Particle physics phenomenology" />
+
+		<subfield fid="%cmp" id="$sld" name="Solid state physics" />
+		<subfield fid="%cmp" id="$mat" name="Materials physics" />
+		<subfield fid="%cmp" id="$plm" name="Polymer physics" />
+	</subfields>
+
+	<systemofunits>
+		<sou id="si" symbol="SI" name="International System of Units" />
+		<sou id="mks" symbol="MKS" name="Metric-Kilogram-Second System" />
+		<sou id="cgs" symbol="CGS" name="Centimeter-Gram-Second System" />
+		<sou id="imp" symbol="Imperial" name="Imperial System" />
+		<sou id="eng" symbol="Ebglish" name="English System" />
+		<sou id="amc" symbol="American" name="American System" />
+	</systemofunits>
+	
+	<domains>
+		<domain id="@tim" name="Time" />
+		<domain id="@len" name="Length" />
+		<domain id="@mas" name="Mass" />
+		<domain id="@tem" name="Temperature" />
+		<domain id="@ecu" name="Electric Current" />
+		<domain id="@lum" name="Luminosity" />
+		<domain id="@ams" name="Amount of Substance" />
+
+		<domain id="@are" name="Area" />
+		<domain id="@vol" name="Volume" />
+		<domain id="@vld" name="VolumeDry" />
+
+		<domain id="@vel" name="Velocity" />
+		<domain id="@acc" name="Acceleration" />
+
+		<domain id="@den" name="Density" />
+		<domain id="@frc" name="Force" />
+		<domain id="@sts" name="Stress" />
+		<domain id="@eng" name="Energy" />
+		<domain id="@pow" name="Power" />
+		<domain id="@prs" name="Pressure" />
+		<domain id="@flw" name="Flow" />
+		<domain id="@lgt" name="Light" />
+		<domain id="@agl" name="Angle" />
+		<domain id="@sag" name="Space Angle" />
+		<domain id="@ctr" name="Concentration" />
+		<domain id="@trq" name="Torque" />
+	
+		<domain id="@cmp" name="Computer" />
+	
+		<domain id="@xyz" name="Special" />
+	</domains>
+
+	<factors>
+		<factor id="*T" symbol="T" name="Tera" value="1e12" />
+		<factor id="*G" symbol="G" name="Giga" value="1e9" />
+		<factor id="*M" symbol="M" name="Mega" value="1e6" />
+		<factor id="*k" symbol="k" name="kilo" value="1e3" />
+		<factor id="*d" symbol="d" name="deci" value="1e-1" />
+		<factor id="*c" symbol="c" name="centi" value="1e-2" />
+		<factor id="*m" symbol="m" name="milli" value="1e-3" />
+		<factor id="*µ" symbol="µ" name="micro" value="1e-6" />
+		<factor id="*n" symbol="n" name="nano" value="1e-9" />
+		<factor id="*p" symbol="p" name="pico" value="1e-12" />
+		<factor id="*f" symbol="f" name="femto" value="1e-15" />
+	</factors>
+
+	<units>
+		<baseunit dom="@len" qtyId="LENGTH" id=".m" symbol="m" name="meter" />
+		<baseunit dom="@tim" qtyId="TIME" id=".s" symbol="s" name="second" />
+		<baseunit dom="@mas" qtyId="MASS" id=".g" symbol="g" name="gram" />
+		<baseunit dom="@tem" qtyId="TEMPERATURE" id=".K" symbol="K" name="Kelvin" />
+		<baseunit dom="@ecu" qtyId="ELCURRENT" id=".A" symbol="A" name="Ampere" />
+		<baseunit dom="@lum" qtyId="LUMINOSITY" id=".cd" symbol="cd" name="candela" />
+		<baseunit dom="@ams" qtyId="AMTSUBSTANCE" id=".mol" symbol="mol" name="mole" />
+
+		<!-- length -->
+		<compunit dom="@len" idvec="*k.m" /> <!-- other factored units on the fly... -->
+		<substunit dom="@len" ubasid=".m" id=".Ao" symbol="Å" name="Ångström">
+			<converter type="mul" m="1e-10" />
+		</substunit>
+		<substunit dom="@len" ubasid=".m" id=".AU" symbol="AU" name="Astronomic Unit">
+			<converter type="mul" m="1.49598e11" />
+		</substunit>
+		<substunit dom="@len" ubasid=".m" id=".ly" symbol="ly" name="Light year">
+			<converter type="mul" m="9.460528e15" />
+		</substunit>
+		<substunit dom="@len" ubasid=".m" id=".pc" symbol="pc" name="Parsec">
+			<converter type="mul" m="3.0857e16" />
+		</substunit>
+		<substunit dom="@len" ubasid=".m" id=".XU" symbol="XU" name="X-Unit">
+			<converter type="mul" m="1.00206e-13" />
+		</substunit>
+		<substunit dom="@len" ubasid=".m" id=".nm" symbol="nm" name="nautical mile">
+			<converter type="mul" m="1.852e3" />
+		</substunit>
+		<substunit dom="@len" ubasid=".m" id=".mi" symbol="mi" name="mile">
+			<converter type="mul" m="1.609344e3" />
+		</substunit>
+		<!-- FIXME: whats a "mil" ? -->
+		<!-- FIXME: whats a "furlong" ? -->
+		<substunit dom="@len" ubasid=".m" id=".ft" symbol="ft" name="foot">
+			<converter type="mul" m="0.3048" />
+		</substunit>
+		<substunit dom="@len" ubasid=".m" id=".in" symbol="in" name="inch">
+			<converter type="mul" m="0.0254" />
+		</substunit>
+		<substunit dom="@len" ubasid=".m" id=".yd" symbol="yd" name="yard">
+			<converter type="mul" m="0.9144" />
+		</substunit>
+		<substunit dom="@len" ubasid=".yd" id=".ch" symbol="ch" name="chain">
+			<converter type="mul" m="22" />
+		</substunit>
+		<substunit dom="@len" ubasid=".yd" id=".fl" symbol="fl" name="furlong">
+			<converter type="mul" m="220" />
+		</substunit>
+		<substunit dom="@len" ubasid=".yd" id=".li" symbol="li" name="link">
+			<converter type="mul" m="0.22" />
+		</substunit>
+		<substunit dom="@len" ubasid=".m" id=".nl" symbol="nl" name="nautical league">
+			<converter type="mul" m="5560" />
+		</substunit>
+		<substunit dom="@len" ubasid=".m" id=".tnm" symbol="tnm" name="telegraph nautical mile">
+			<converter type="mul" m="1855.317600000000" />
+		</substunit>
+		<substunit dom="@len" ubasid=".m" id=".gg" symbol="gg" name="gauge">
+			<converter type="mul" m="0.000025400000" />
+		</substunit>
+		<substunit dom="@len" ubasid=".m" id=".hd" symbol="hd" name="hand">
+			<converter type="mul" m="0.101600000000" />
+		</substunit>
+		<substunit dom="@len" ubasid=".m" id=".inus" symbol="inus" name="inch us">
+			<converter type="mul" m="0.025400051000" />
+		</substunit>
+		<substunit dom="@len" ubasid=".m" id=".ln" symbol="ln" name="line">
+			<converter type="mul" m="0.000635000000" />
+		</substunit>
+		<substunit dom="@len" ubasid=".m" id=".mil" symbol="mil" name="Mil">
+			<converter type="mul" m="0.000025400000" />
+		</substunit>
+		<substunit dom="@len" ubasid=".m" id=".mius" symbol="mius" name="Mile US Survey">
+			<converter type="mul" m="1609.347218700000" />
+		</substunit>
+
+		<!-- time spec -->
+		<substunit dom="@tim" ubasid=".s" id=".min" symbol="min" name="Minute">
+			<converter type="mul" m="60" />
+		</substunit>
+		<substunit dom="@tim" ubasid=".s" id=".h" symbol="h" name="Hour">
+			<converter type="mul" m="3600" />
+		</substunit>
+		<substunit dom="@tim" ubasid=".s" id=".d" symbol="d" name="Day">
+			<converter type="mul" m="86400" />
+		</substunit>
+		<substunit dom="@tim" ubasid=".d" id=".w" symbol="w" name="Week">
+			<converter type="mul" m="7" />
+		</substunit>
+		<substunit dom="@tim" ubasid=".d" id=".mth" symbol="m" name="Month(30d)">
+			<converter type="mul" m="30" />
+		</substunit>
+		<substunit dom="@tim" ubasid=".d" id=".y" symbol="y" name="Year(365d)">
+			<converter type="mul" m="365" />
+		</substunit>
+		<substunit dom="@tim" ubasid=".d" id=".yl" symbol="yl" name="Leap Year(366d)">
+			<converter type="mul" m="366" />
+		</substunit>
+
+		<!-- mass -->
+		<compunit dom="@mas" idvec="*k.g" />  <!-- others automatically -->
+		<factorunit dom="@mas" fid="*m" ubasid=".g" />
+		<substunit dom="@mas" ubasid=".g" id=".ct" symbol="ct" name="Carat">
+			<converter type="mul" m="0.2" />
+		</substunit>
+		<substunit dom="@mas" ubasid=".g" id=".gr" symbol="gr" name="Grain">
+			<converter type="mul" m="0.06479891" />
+		</substunit>
+		<substunit dom="@mas" ubasid=".g" id=".oz" symbol="oz" name="ounze (avdp)">
+			<converter type="mul" m="28.34952" />
+		</substunit>
+		<substunit dom="@mas" ubasid=".g" id=".ozt" symbol="ozt" name="ounze (troy)">
+			<converter type="mul" m="31.10348" />
+		</substunit>
+		<substunit dom="@mas" ubasid=".g" id=".pw" symbol="pw" name="pennyweight">
+			<converter type="mul" m="1.555174" />
+		</substunit>
+		<substunit dom="@mas" ubasid=".g" id=".lb" symbol="lb" name="pound (advp)">
+			<converter type="mul" m="453.5924" />
+		</substunit>
+		<substunit dom="@mas" ubasid=".g" id=".lbt" symbol="lbt" name="pound (troy)">
+			<converter type="mul" m="373.2417" />
+		</substunit>
+		<substunit dom="@mas" ubasid=".g" id=".st" symbol="st" name="stone">
+			<converter type="mul" m="6350.293" />
+		</substunit>
+		<substunit dom="@mas" ubasid=".g" id=".tnl" symbol="tnl" name="long ton">
+			<converter type="mul" m="1016047" />
+		</substunit>
+		<substunit dom="@mas" ubasid=".g" id=".tn" symbol="tn" name="short ton">
+			<converter type="mul" m="907184.7" />
+		</substunit>
+		<substunit dom="@mas" ubasid=".g" id=".t" symbol="t" name="ton">
+			<converter type="mul" m="1e6" />
+		</substunit>
+
+		<!-- temperature -->
+		<substunit dom="@tem" ubasid=".K" id=".°F" symbol="°F" name="Fahrenheit">
+			<!-- TK = (TF + 459,67) / 1,8 -->
+			<!-- TK = 0.5555555556*TF + 255.372222222 -->
+			<converter type="lin">
+				<param name="m" value="0.5555555555555556" xvalue="10/18" />
+				<param name="n" value="255.37222222222222" xvalue="459.67/1.8" />
+			</converter>
+		</substunit>
+		<substunit dom="@tem" ubasid=".K" id=".°C" symbol="°C" name="Celsius">
+			<!-- TK = TC + 273.15 -->
+			<converter type="lin">
+				<param name="m" value="1.0" />
+				<param name="n" value="273.15" />
+			</converter>
+		</substunit>
+		<substunit dom="@tem" ubasid=".K" id=".°Ra" symbol="°Ra" name="Rankine">
+			<!-- TK = TRankine / 1.8 -->
+			<converter type="mul" m="0.5555555556" xm="1/1.8" />
+		</substunit>
+		<substunit dom="@tem" ubasid=".K" id=".°Ré" symbol="°Ré" name="Réaumur">
+			<!-- TK = TRe*1.25 + 273.15 -->
+			<converter type="lin">
+				<param name="m" value="1.25" />
+				<param name="n" value="273.15" />
+			</converter>
+		</substunit>
+		<substunit dom="@tem" ubasid=".K" id=".°Rø" symbol="°Rø" name="Rømer">
+			<!-- TK = (TRo-7.5)*40/21 + 273.15 -->
+			<!-- TK = TRo*40/21 + (-7.5*40/21*273.15) -->
+			<!-- TK = TRo* 1.904761905 + (-3902.142857143) -->
+			<converter type="lin">
+				<param name="m" value="1.904761905" xvalue="40/21" />
+				<param name="n" value="-3902.142857143" xvalue="-7.5*40/21*273.15" />
+			</converter>
+		</substunit>
+		<substunit dom="@tem" ubasid=".K" id=".°De" symbol="°De" name="Delisle">
+			<!-- TK = TDe*(-2/3) + 373.15 -->
+			<converter type="lin">
+				<param name="m" value="-0.666666667" xvalue="-2/3" />
+				<param name="n" value="373.15" />
+			</converter>
+		</substunit>
+		<substunit dom="@tem" ubasid=".K" id=".°N" symbol="°N" name="Newton">
+			<!-- TK = TN*(100/33) + 273.15 -->
+			<converter type="lin">
+				<param name="m" value="3.030303030" xvalue="100/33" />
+				<param name="n" value="273.15" />
+			</converter>
+		</substunit>
+
+		<!-- electric current -->
+		<!-- nothing so far -->
+
+		<!-- luminosity -->
+		<!-- nothing so far -->
+
+		<!-- amount of substance -->
+		<compunit dom="@ams" idvec="*k.mol" /> <!-- rest automatically -->
+		
+		<!-- area -->
+		<compunit dom="@are" >
+			<umul id=".m" />
+			<umul id=".m" />
+		</compunit>
+		<substunit dom="@are" ubasid=".m.m" id=".ar" symbol="ar" name="Ar">
+			<converter type="mul" m="10" />
+		</substunit>
+		<substunit dom="@are" ubasid=".m.m" id=".ha" symbol="ha" name="Hektar">
+			<converter type="mul" m="10000" />
+		</substunit>
+		<substunit dom="@are" ubasid=".m.m" id=".mg" symbol="mg" name="Morgen">
+			<converter type="mul" m="2500" />
+		</substunit>
+		<substunit dom="@are" ubasid=".m.m" id=".ac" symbol="ac" name="Acre">
+			<converter type="mul" m="4046.856000000000" />
+		</substunit>
+
+		<!-- volume -->
+		<compunit dom="@vol" >
+			<umul id=".m" />
+			<umul id=".m" />
+			<umul id=".m" />
+		</compunit>
+		<substunit dom="@vol" ubasid=".m.m.m" id=".l" symbol="l" name="litre">
+			<converter type="mul" m="0.001" />
+		</substunit>
+		<substunit dom="@vol" ubasid=".l" id=".gal" symbol="gal" name="Gallon">
+			<converter type="mul" m="4.546" />
+		</substunit>
+
+		<!-- force -->
+		<compunit dom="@frc" >
+			<umul id="*k.g" />
+			<umul id=".m" />
+			<udiv id=".s" />
+			<udiv id=".s" />
+		</compunit>
+		<compunit dom="@frc" >
+			<subst id=".N" symbol="N" name="Newton" />
+			<umul id="*k.g" />
+			<umul id=".m" />
+			<udiv id=".s" />
+			<udiv id=".s" />
+		</compunit>
+
+		<!-- stress -->
+		<compunit dom="@sts" >
+			<umul id=".N" />
+			<udiv id="*m.m" />
+			<udiv id="*m.m" />
+		</compunit>
+		<compunit dom="@sts" >
+			<umul id=".N" />
+			<udiv id=".m" />
+			<udiv id=".m" />
+		</compunit>
+		<compunit dom="@sts">
+			<subst id=".Pa" symbol="Pa" name="Pascal" />
+			<ubas id=".N:m:m" />
+		</compunit>
+		<compunit dom="@sts">
+			<ufac id="*M" />
+			<umul id=".Pa" />
+		</compunit>
+
+		<!-- velocity -->
+		<compunit dom="@vel" idvec=".m:s" />
+		<compunit dom="@vel" >
+			<umul id="*k.m" />
+			<udiv id=".h" />
+		</compunit>
+	
+		<!-- specials -->
+		<compunit dom="@vel" >
+			<umul id="*k.N" />
+			<umul id="*k.m" />
+		</compunit>
+		<compunit dom="@xyz" >
+			<umul id="*k.N" />
+			<udiv id="*k.m" />
+		</compunit>
+	</units>
+
+	<unitcontexts>
+		<uc dom="@vel" uid=".m:s" sou="si,mks" />
+	</unitcontexts>
+</unitdef>

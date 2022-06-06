@@ -1,0 +1,267 @@
+#format=1.0
+
+# input tests:
+
+test	= input simple 1
+input	= 0 1 0 =
+result	= 10.0
+eps		= 1e-9
+endtest
+
+test=input simple 2
+input	= 1 0 . 5 =
+result	= 10.5
+eps		= 1e-9
+endtest
+
+test=input simple 3
+input	= 1 0 . 5 +/- 2 4 =
+result	= -10.524
+eps		= 1e-9
+endtest
+
+# calculation tests:
+
+test=add 1
+input	= 1 0 + 1 0 + 1 0 =
+result	= 30.0
+eps		= 1e-9
+endtest
+
+test=add 2
+input	= 1 0 + 1 0 0 + 1 0 0 0 =
+result	= 1110.0
+eps		= 1e-9
+endtest
+
+test=add 3
+input	= 1 0 + + 1 0 0 + + 1 0 0 0 =
+result	= 1110.0
+eps		= 1e-9
+endtest
+
+# command replace tests:
+
+test=cmd replace 1
+input	= 1 0 + - 1 0 0 - + 1 0 0 0 =
+result	= 910.0
+eps		= 1e-9
+endtest
+
+test=cmd replace 2
+input	= 1 0 * - 1 0 0 - * 1 0 0 0 =
+result	= -90000.0
+eps		= 1e-9
+endtest
+
+# mathematical tests:
+
+test=math test 1
+input	= 1 0 + - 1 0 0 - + 1 0 0 0 =
+result	= 910.0
+eps		= 1e-9
+endtest
+
+# math functions test:
+
+#	public final static String PA_M_SQR = "sqr";
+#	public final static String PA_M_SQRT = "sqrt";
+#	public final static String PA_M_LN = "ln";
+#	public final static String PA_M_LOG = "log";
+#	public final static String PA_M_EXP = "exp";
+#	public final static String PA_M_EXP10 = "exp10";
+#	public final static String PA_M_XINV = "xinv";
+#	public final static String PA_M_SIN = "sin";
+#	public final static String PA_M_COS = "cos";
+#	public final static String PA_M_TAN = "tan";
+#	public final static String PA_M_COT = "cot";
+#	public final static String PA_M_POW = "pow";
+#	public final static String PA_M_X_RT = "xrt";
+
+test=math func test 1 (1/x)
+input	= 2 xinv
+result	= 0.5
+eps		= 1e-9
+endtest
+
+test=math func test 2 (x^2)
+input	= 2 sqr
+result	= 4.0
+eps		= 1e-9
+endtest
+
+test=math func test 3 (sqrt)
+input	= 9 sqrt
+result	= 3.0
+eps		= 1e-9
+endtest
+
+test=math func test 4 (e)
+input	= e
+result	= 2.718281828459045
+eps		= 1e-9
+endtest
+
+test=math func test 5 (pi)
+input	= pi
+result	= 3.141592653589793
+eps		= 1e-9
+endtest
+
+test=math func test 6 (ln)
+input	= e ln
+result	= 1.0
+eps		= 1e-9
+endtest
+
+test=math func test 7 (ln)
+input	= 1 ln
+result	= 0.0
+eps		= 1e-9
+endtest
+
+test=math func test 8 (log)
+input	= 1 0 log
+result	= 1.0
+eps		= 1e-9
+endtest
+
+test=math func test 9 (log)
+input	= 1 log
+result	= 0.0
+eps		= 1e-9
+endtest
+
+test=math func test 10 (exp)
+input	= 0 exp
+result	= 1.0
+eps		= 1e-9
+endtest
+
+test=math func test 11 (exp)
+input	= 1 exp
+result	= 2.718281828459045
+eps		= 1e-9
+endtest
+
+test=math func test 12 (exp10)
+input	= 0 exp10
+result	= 1.0
+eps		= 1e-9
+endtest
+
+test=math func test 13 (exp10)
+input	= 1 exp10
+result	= 10.0
+eps		= 1e-9
+endtest
+
+test=math func test 14 (x^y)
+input	= 4 pow 3 =
+result	= 64.0
+eps		= 1e-9
+endtest
+
+test=math func test 15 (y^(1/x))
+input	= 4 xrt 8 1 =
+result	= 3.0
+eps		= 1e-9
+endtest
+
+# sequence tester
+
+test=sequence test 1 (input sequence)
+seqmode	= 1
+eps		= 1e-9
+seq		= 1 1.0 1e-9
+seq		= 2 12.0 1e-9
+seq		= +/- -12.0 1e-9
+endtest
+
+test=sequence test 2 (add sequence)
+seqmode	= 1
+eps		= 1e-9
+seq		= 1 1.0		# the value of the current input
+seq		= +			# nothing to test
+seq		= 2 2.0		# current input
+seq		= + 3.0		# the result of the previous +
+seq		= 3 3.0		# current input
+seq		= + 6.0		# result of previous +
+seq		= 4 4.0		# current input
+seq		= + 10.0	# result of previous +
+seq		= 5 5.0		# current input
+seq		= = 15.0	# result of calculation
+endtest
+
+test=sequence test 3 (clear)
+seqmode	= 1
+eps		= 1e-9
+seq		= 1
+seq		= 2
+seq		= c.a
+seq		= = 0.0		# result of calculation
+endtest
+
+test=sequence test 3 (clear entry)
+eps		= 1e-9
+input	= 1 2 + 1 2 c.e 3 =
+result	= 15.0		# result of calculation
+endtest
+
+test=sequence test 4 (trigonometry)
+seqmode	= 1
+eps		= 1e-9
+seq		= 0
+seq		= sin 0.0	# sin(0) = 0
+seq		= pi
+seq		= sin 0.0	# sin(pi) = 0
+seq		= 0
+seq		= cos 1.0	# cos(0) = 1
+seq		= pi
+seq		= cos -1.0	# cos(pi) = -1
+seq		= pi
+seq		= /
+seq		= 2
+seq		= =
+seq		= m.s
+seq		= sin 1.0	# sin(pi/2) = 1
+seq		= m.r
+seq		= cos 0.0	# cos(pi/2) = 0
+seq		= 0
+seq		= tan 0.0	# tan(0) = 0
+seq		= pi
+seq		= tan 0.0	# tan(pi) = 0
+seq		= m.r
+seq		= cot 0.0	# cot(pi/2) = 0
+seq		= m.r
+seq		= /
+seq		= 2
+seq		= =
+seq		= m.s
+seq		= tan 1.0	# tan(pi/4) = 1
+seq		= m.r
+seq		= cot 1.0	# cot(pi/4) = 1
+seq		= m.r
+seq		= *
+seq		= 3
+seq		= =
+seq		= tan -1.0	# tan(3 pi/4) = -1
+endtest
+
+test=sequence test 5 (math op mixing)
+seqmode	= 1
+eps		= 1e-9
+seq		= 1
+seq		= +
+seq		= 2
+seq		= + 3.0		# = 1+2
+seq		= 5
+seq		= -	8.0		# = 3 + 5
+seq		= 7
+seq		= /	1.0		# = 8 - 7
+seq		= 5
+seq		= *	0.2		# = 1 / 5
+seq		= 8
+seq		= +/-
+seq		= = -1.6	# = 0.2 * (-8)
+endtest

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Calculator[
+<!ELEMENT AutoName EMPTY>
+<!ELEMENT Calculator (Layout)>
+<!ELEMENT CellCon ((AutoName)?|(StretchColspan)?|(StretchRowspan)?|(Span)?)>
+<!ELEMENT TemplateCellCon (CellCon)>
+<!ELEMENT Display (Name,CellCon)>
+<!ELEMENT Grid (Size,NameList,TemplateCellCon)>
+<!ELEMENT Layout (Type,Single)>
+<!ELEMENT Name (#PCDATA)>
+<!ELEMENT NameList (#PCDATA)>
+<!ELEMENT Single (Display)>
+<!ELEMENT StretchColspan EMPTY>
+<!ELEMENT StretchRowspan EMPTY>
+<!ELEMENT Span (#PCDATA)>
+<!ELEMENT Pan (#PCDATA)>
+<!ELEMENT Type (#PCDATA)>
+]>
+<Calculator>
+	<Layout>
+		<Type>CalcCompLayout</Type>
+		<Single>
+			<Display>
+				<Name>dsp.display</Name>
+				<CellCon>
+					<AutoName/>
+					<StretchColspan/>
+					<Span>1, 1</Span>
+				</CellCon>
+			</Display>
+		</Single>
+		<Grid>
+			<Size>5, 1</Size>
+			<NameList>m.+, m.-, m.s, m.r, m.c</NameList>
+			<TemplateCellCon>
+				<CellCon>
+					<Name>template</Name>
+					<Pan>1, 1</Pan>
+					<Span>1, 1</Span>
+				</CellCon>
+			</TemplateCellCon>
+			<Components>
+				<Button><AutoName/><Id>m.+</Id></Button>
+				<Button><AutoName/><Id>m.-</Id></Button>
+				<Button><AutoName/><Id>m.s</Id></Button>
+				<Button><AutoName/><Id>m.r</Id></Button>
+				<Button><AutoName/><Id>m.c</Id></Button>
+			</Components>
+		</Grid>
+		<Grid>
+			<Size>3, 4</Size>
+			<NamePrefix>p1</NamePrefix>
+			<TemplateCellCon>
+				<CellCon>
+					<Name>template</Name>
+					<Pan>1, 1</Pan>
+					<Span>1, 1</Span>
+					<MajorGrid>true</MajorGrid>
+				</CellCon>
+			</TemplateCellCon>
+			<Components>
+				<Button><AutoName/><Id>7</Id></Button>
+				<Button><AutoName/><Id>8</Id></Button>
+				<Button><AutoName/><Id>9</Id></Button>
+				<Button><AutoName/><Id>4</Id></Button>
+				<Button><AutoName/><Id>5</Id></Button>
+				<Button><AutoName/><Id>6</Id></Button>
+				<Button><AutoName/><Id>1</Id></Button>
+				<Button><AutoName/><Id>2</Id></Button>
+				<Button><AutoName/><Id>3</Id></Button>
+				<Button><AutoName/><Id>+/-</Id></Button>
+				<Button><AutoName/><Id>0</Id></Button>
+				<Button><AutoName/><Id>.</Id></Button>
+			</Components>
+		</Grid>
+	</Layout>
+</Calculator>

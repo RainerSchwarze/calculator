@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<calcspec>
+	<categories>
+		<category id=".area" name="Cross Section"/>
+		<category id=".strain" name="Strain">
+			<category id=".strainfromlengths" name="From Lengths" />
+			<category id=".strainfromstress" name="From Stress" />
+			<category id=".strainfromstrain" name="From Strain" />
+		</category>
+		<category id=".elongation" name="Extension"/>
+		<category id=".stress" name="Stress"/>
+		<category id=".poisson" name="Poisson's Ratio"/>
+		<category id=".strength" name="Strength"/>
+		<category id=".youngsmod" name="Young's Modulus"/>
+		<category id=".shearmod" name="Shear Modulus"/>
+	</categories>
+
+	<calculations>
+		<calculation id="area=width*depth" catid=".area" >
+			<title>Rectangular Cross Section = f(Width, Depth)</title>
+			<description>Calculate Cross Section from Width and Depth</description>
+
+			<output mid=".area" qid="@area" value="100.0" uid="*m.m*m.m"
+					symbol="A" name="Cross Section" >
+			</output>
+			<input mid=".width" qid="@length" value="10.0" uid="*m.m"
+					symbol="W" name="Width" >
+			</input>
+			<input mid=".depth" qid="@length" value="10.0" uid="*m.m"
+					symbol="D" name="Depth" >
+			</input>
+			<expression>width * depth</expression>
+		</calculation>
+
+		<calculation id="area=diameter*diameter*pi/4" catid=".area" >
+			<title>Circular Cross Section = f(Diameter)</title>
+			<description>Calculate Cross Section from Diameter</description>
+
+			<output mid=".area" qid="@area" value="100.0" uid="*m.m*m.m"
+					symbol="A" name="Cross Section" >
+			</output>
+			<input mid=".diam" qid="@length" value="10.0" uid="*m.m"
+					symbol="d" name="Diameter" >
+			</input>
+			<expression>pi()/4 * diam * diam</expression>
+		</calculation>
+
+		<calculation id="area=diameter*diameter*pi/4" catid=".area" >
+			<title>Hollow Tube Cross Section = f(Diameter1, Diameter2)</title>
+			<description>Calculate Cross Section from Inner and Outer Diameter</description>
+
+			<output mid=".area" qid="@area" value="100.0" uid="*m.m*m.m"
+					symbol="A" name="Cross Section" >
+			</output>
+			<input mid=".diam1" qid="@length" value="10.0" uid="*m.m"
+					symbol="di" name="Inner Diameter" >
+			</input>
+			<input mid=".diam2" qid="@length" value="20.0" uid="*m.m"
+					symbol="do" name="Outer Diameter" >
+			</input>
+			<expression>pi()/4 * ((diam2 * diam2) - (diam1 * diam1))</expression>
+		</calculation>
+
+		<calculation id="area=mass/(density*length)" catid=".area" >
+			<title>Arbitrary Cross Section = f(Mass, Density, Length)</title>
+			<description>Calculate Cross Section from Mass, Density and Length of Specimen</description>
+
+			<output mid=".area" qid="@area" value="100.0" uid="*m.m*m.m"
+					symbol="A" name="Cross Section" >
+			</output>
+			<input mid=".mass" qid="@mass" value="1.0" uid="*k.g"
+					symbol="m" name="Mass" >
+			</input>
+			<input mid=".density" qid="@density" value="10.0" uid=".g/c:m/c:m/c:m"
+					symbol="rho" name="Density" >
+				<constraint>
+					<interval kind="prohibited" type="closedclosed" begin="0.0" end="0.0" />
+				</constraint>
+			</input>
+			<input mid=".length" qid="@length" value="500.0" uid="*m.m"
+					symbol="L" name="Specimen Length" >
+				<constraint>
+					<interval kind="prohibited" type="closedclosed" begin="0.0" end="0.0" />
+				</constraint>
+			</input>
+			<expression>mass / (density * length)</expression>
+		</calculation>
+
+		<calculation id="stress=force/area" catid=".stress" >
+			<title>Stress = f(Force/Cross Section)</title>
+			<description>Calculate Stress from Force and Cross Section</description>
+			<output mid=".stress" qid="@stress" value="1.0" uid="*M.Pa"
+					symbol="S" name="Stress" >
+			</output>
+			<input mid=".force" qid="@force" value="1.0" uid="*k.N"
+					symbol="F" name="Force" >
+			</input>
+			<input mid=".area" qid="@area" value="1.0" uid="*m.m*m.m"
+					symbol="A" name="Cross section" >
+				<constraint>
+					<interval kind="prohibited" type="closedclosed" begin="0.0" end="0.0" />
+				</constraint>
+			</input>
+			<expression>force / area</expression>
+		</calculation>
+
+		<calculation id="tensilestrength=force/area" catid=".strength" >
+			<title>Tensile Strength = f(Max Force/Initial Cross Section)</title>
+			<description>Calculate Tensile Strength from Maximum Force and Initial Cross Section</description>
+			<output mid=".tensilestrength" qid="@stress" value="100.0" uid="*M.Pa"
+					symbol="Rm" name="Tensile Strength" >
+			</output>
+			<input mid=".force" qid="@force" value="10.0" uid="*k.N"
+					symbol="Fmax" name="Maximum Force" >
+			</input>
+			<input mid=".area" qid="@area" value="1.0" uid="*m.m*m.m"
+					symbol="A0" name="Initial Cross Section" >
+				<constraint>
+					<interval kind="prohibited" type="closedclosed" begin="0.0" end="0.0" />
+				</constraint>
+			</input>
+			<expression>force / area</expression>
+		</calculation>
+
+		<calculation id="youngsmod=stress/strain" catid=".youngsmod" >
+			<title>Young's Modulus = f(Stress/Strain)</title>
+			<description>Calculate Young's Modulus from Stress and Strain</description>
+			<output mid=".ygmod" qid="@moduli" value="1.0" uid="*G.Pa"
+					symbol="E" name="Young's Modulus" >
+			</output>
+			<input mid=".stress" qid="@stress" value="100.0" uid="*M.Pa"
+					symbol="s" name="Stress" >
+			</input>
+			<input mid=".strain" qid="@strain" value="0.1" uid=".strainpercent"
+					symbol="eps" name="Strain" >
+				<constraint>
+					<interval kind="prohibited" type="closedclosed" begin="0.0" end="0.0" />
+				</constraint>
+			</input>
+			<expression>stress / strain</expression>
+		</calculation>
+
+		<calculation id="youngsmod=stress2-stress1/strain2-strain1" catid=".youngsmod" >
+			<title>Young's Modulus = f(Stress(1,2)/Strain(1,2))</title>
+			<description>Calculate Young's Modulus as a Secant Modulus from two Stresses and two Strains</description>
+			<output mid=".ygmod" qid="@moduli" value="1.0" uid="*G.Pa"
+					symbol="E" name="Young's Modulus" >
+			</output>
+			<input mid=".stress1" qid="@stress" value="10.0" uid="*M.Pa"
+					symbol="s1" name="Stress 1" >
+			</input>
+			<input mid=".stress2" qid="@stress" value="20.0" uid="*M.Pa"
+					symbol="s2" name="Stress 2" >
+			</input>
+			<input mid=".strain1" qid="@strain" value="0.05" uid=".strainpercent"
+					symbol="eps1" name="Strain 1" >
+			</input>
+			<input mid=".strain2" qid="@strain" value="0.25" uid=".strainpercent"
+					symbol="eps2" name="Strain 2" >
+			</input>
+			<expression>(stress2 - stress1) / (strain2 - strain1)</expression>
+		</calculation>
+
+		<calculation id="youngsmod=2.(1pmu).shearmodule" catid=".youngsmod" >
+			<title>Young's Modulus = f(Poisson's Ratio, Shear Modulus)</title>
+			<description>Calculate Young's Modulus from Poisson's Ratio and Shear Modulus</description>
+			<output mid=".ygmod" qid="@moduli" value="1.0" uid="*G.Pa"
+					symbol="E" name="Young's Modulus" >
+			</output>
+			<input mid=".poisson" qid="@ratio" value="1.0" uid=".ratio1"
+					symbol="ny" name="Poisson's Ratio" >
+			</input>
+			<input mid=".shearmod" qid="@moduli" value="1.0" uid="*G.Pa"
+					symbol="G" name="Shear Modulus" >
+			</input>
+			<expression>2 * ( 1 + poisson ) * shearmod</expression>
+		</calculation>
+
+		<calculation id="shearmod=youngsmod/(2.(1pmu))" catid=".shearmod" >
+			<title>Shear Modulus = f(Poisson's Ratio, Young's Modulus)</title>
+			<description>Calculate Shear Modulus from Poisson's Ratio and Young's Modulus</description>
+			<output mid=".shmod" qid="@moduli" value="1.0" uid="*G.Pa"
+					symbol="G" name="Shear Modulus" >
+			</output>
+			<input mid=".poisson" qid="@ratio" value="1.0" uid=".ratio1"
+					symbol="ny" name="Poisson's Ratio" >
+			</input>
+			<input mid=".ygmod" qid="@moduli" value="1.0" uid="*G.Pa"
+					symbol="E" name="Young's Modulus" >
+			</input>
+			<expression>ygmod / (2*(1+poisson))</expression>
+		</calculation>
+
+		<calculation id="shearmod=shearstress/shearstrain" catid=".shearmod" >
+			<title>Shear Modulus = f(Shear Stress, Shear Strain)</title>
+			<description>Calculate Shear Modulus from Shear Stress and Shear Strain</description>
+			<output mid=".shmod" qid="@moduli" value="1.0" uid="*G.Pa"
+					symbol="G" name="Shear Modulus" >
+			</output>
+			<input mid=".shstress" qid="@stress" value="10.0" uid="*M.Pa"
+					symbol="tau" name="Shear Stress" >
+			</input>
+			<input mid=".shstrain" qid="@strain" value="0.1" uid=".ratio1"
+					symbol="gamma" name="Shear Strain" >
+				<constraint>
+					<interval kind="prohibited" type="closedclosed" begin="0.0" end="0.0" />
+				</constraint>
+			</input>
+			<expression>shstress / shstrain</expression>
+		</calculation>
+
+		<calculation id="strain=deltal/lnull" catid=".strainfromlengths" >
+			<title>Strain = f(delta L, L0)</title>
+			<description>Calculate Strain from Extension dL and Initial Length L0</description>
+			<output mid=".strain" qid="@strain" value="1.0" uid=".strainpercent"
+					symbol="eps" name="Strain" >
+			</output>
+			<input mid=".dl" qid="@length" value="1.0" uid="*m.m"
+					symbol="dL" name="Extension" >
+			</input>
+			<input mid=".lnull" qid="@length" value="10.0" uid="*m.m"
+					symbol="L0" name="Initial Length" >
+				<constraint>
+					<interval kind="prohibited" type="closedclosed" begin="0.0" end="0.0" />
+				</constraint>
+			</input>
+			<expression>dl / lnull</expression>
+		</calculation>
+
+		<calculation id="strain=l/lnull" catid=".strainfromlengths" >
+			<title>Strain = f(L, L0)</title>
+			<description>Calculate Strain from Current Length L and Initial Length L0</description>
+			<output mid=".strain" qid="@strain" value="1.0" uid=".strainpercent"
+					symbol="eps" name="Strain" >
+			</output>
+			<input mid=".l" qid="@length" value="10.1" uid="*m.m"
+					symbol="L" name="Current Length" >
+			</input>
+			<input mid=".lnull" qid="@length" value="10.0" uid="*m.m"
+					symbol="L0" name="Initial Length" >
+				<constraint>
+					<interval kind="prohibited" type="closedclosed" begin="0.0" end="0.0" />
+				</constraint>
+			</input>
+			<expression>(l - lnull) / lnull</expression>
+		</calculation>
+
+		<calculation id="truestrain=ln(l/lnull)" catid=".strainfromlengths" >
+			<title>True Strain = f(L, L0)</title>
+			<description>Calculate True Strain from Current Length L and Initial Length L0</description>
+			<output mid=".strain" qid="@strain" value="1.0" uid=".strainpercent"
+					symbol="eps" name="True Strain" >
+			</output>
+			<input mid=".l" qid="@length" value="10.1" uid="*m.m"
+					symbol="L" name="Current Length" >
+			</input>
+			<input mid=".lnull" qid="@length" value="10.0" uid="*m.m"
+					symbol="L0" name="Initial Length" >
+				<constraint>
+					<interval kind="prohibited" type="closedclosed" begin="0.0" end="0.0" />
+				</constraint>
+			</input>
+			<expression>ln(l / lnull)</expression>
+		</calculation>
+
+		<calculation id="truestrain=ln(lnull+dl/lnull)" catid=".strainfromlengths" >
+			<title>True Strain = f(dL, L0)</title>
+			<description>Calculate True Strain from Extension dL and Initial Length L0</description>
+			<output mid=".strain" qid="@strain" value="1.0" uid=".strainpercent"
+					symbol="eps" name="True Strain" >
+			</output>
+			<input mid=".dl" qid="@length" value="0.1" uid="*m.m"
+					symbol="dL" name="Extension" >
+			</input>
+			<input mid=".lnull" qid="@length" value="10.0" uid="*m.m"
+					symbol="L0" name="Initial Length" >
+				<constraint>
+					<interval kind="prohibited" type="closedclosed" begin="0.0" end="0.0" />
+				</constraint>
+			</input>
+			<expression>ln((lnull + dl) / lnull)</expression>
+		</calculation>
+
+		<calculation id="latstrain=deltaw/wnull" catid=".strainfromlengths" >
+			<title>Transverse Strain = f(delta W, W)</title>
+			<description>Calculate Transverse Strain from delta W and Initial Width W0</description>
+			<output mid=".latstrain" qid="@strain" value="1.0" uid=".strainpercent"
+					symbol="eps(transv)" name="Transverse Strain" >
+			</output>
+			<input mid=".dw" qid="@length" value="1.0" uid="*m.m"
+					symbol="dW" name="Change in Width" >
+			</input>
+			<input mid=".wnull" qid="@length" value="10.0" uid="*m.m"
+					symbol="W0" name="Initial Width" >
+				<constraint>
+					<interval kind="prohibited" type="closedclosed" begin="0.0" end="0.0" />
+				</constraint>
+			</input>
+			<expression>dw / wnull</expression>
+		</calculation>
+
+		<calculation id="latstrain=strain*poisson" catid=".strainfromstrain" >
+			<title>Transverse Strain = f(Strain, Poisson' Ratio)</title>
+			<description>Calculate Transverse Strain from Strain and Poisson's Ratio</description>
+			<output mid=".latstrain" qid="@strain" value="1.0" uid=".strainpercent"
+					symbol="eps(transv)" name="Transverse Strain" >
+			</output>
+			<input mid=".strain" qid="@strain" value="0.1" uid=".strainpercent"
+					symbol="eps" name="Strain" >
+			</input>
+			<input mid=".poisson" qid="@ratio" value="0.25" uid=".ratio1"
+					symbol="ny" name="Poisson's Ratio" >
+			</input>
+			<expression>strain * poisson</expression>
+		</calculation>
+
+		<calculation id="strain=sigma/ygmod" catid=".strainfromstress" >
+			<title>Strain = f(Stress, Young's Modulus)</title>
+			<description>Calculate Strain from Stress and Young's Modulus</description>
+			<output mid=".strain" qid="@strain" value="0.1" uid=".strainpercent"
+					symbol="eps" name="Strain" >
+			</output>
+			<input mid=".stress" qid="@stress" value="100.0" uid="*M.Pa"
+					symbol="s" name="Stress" >
+			</input>
+			<input mid=".ygmod" qid="@moduli" value="200.0" uid="*G.Pa"
+					symbol="E" name="Young's Modulus" >
+				<constraint>
+					<interval kind="prohibited" type="closedclosed" begin="0.0" end="0.0" />
+				</constraint>
+			</input>
+			<expression>stress / ygmod</expression>
+		</calculation>
+
+		<calculation id="strain=force/area/ygmod" catid=".strainfromstress" >
+			<title>Strain = f(Force, Cross Section, Young's Modulus)</title>
+			<description>Calculate Strain from Force, Area and Young's Modulus</description>
+			<output mid=".strain" qid="@strain" value="1.0" uid=".strainpercent"
+					symbol="eps" name="Strain" >
+			</output>
+			<input mid=".force" qid="@force" value="1.0" uid="*k.N"
+					symbol="F" name="Force" >
+			</input>
+			<input mid=".area" qid="@area" value="1.0" uid="*m.m*m.m"
+					symbol="A" name="Cross Section" >
+				<constraint>
+					<interval kind="prohibited" type="closedclosed" begin="0.0" end="0.0" />
+				</constraint>
+			</input>
+			<input mid=".ygmod" qid="@moduli" value="200.0" uid="*G.Pa"
+					symbol="E" name="Young's Modulus" >
+				<constraint>
+					<interval kind="prohibited" type="closedclosed" begin="0.0" end="0.0" />
+				</constraint>
+			</input>
+			<expression>force / area / ygmod</expression>
+		</calculation>
+
+		<calculation id="poisson=latstrain/strain" catid=".poisson" >
+			<title>Poisson's Ratio = f(Transverse Strain, Strain)</title>
+			<description>Calculate Poisson's Ratio from Transverse Strain and Strain</description>
+			<output mid=".poisson" qid="@ratio" value="0.25" uid=".ratio1"
+					symbol="ny" name="Poisson's Ratio" >
+			</output>
+			<input mid=".latstrain" qid="@strain" value="0.1" uid=".strainpercent"
+					symbol="eps(transv)" name="Transverse Strain" >
+			</input>
+			<input mid=".strain" qid="@strain" value="0.4" uid=".strainpercent"
+					symbol="eps" name="Strain" >
+				<constraint>
+					<interval kind="prohibited" type="closedclosed" begin="0.0" end="0.0" />
+				</constraint>
+			</input>
+			<expression>latstrain / strain</expression>
+		</calculation>
+
+		<calculation id="poisson=1-youngsmod/(2.shearmod)" catid=".shearmod" >
+			<title>Poisson's Ratio = f(Shear Modulus, Young's Modulus)</title>
+			<description>Calculate Poisson's Ratio from Shear Modulus and Young's Modulus</description>
+			<output mid=".poisson" qid="@ratio" value="1.0" uid=".ratio1"
+					symbol="ny" name="Poisson's Ratio" >
+			</output>
+			<input mid=".ygmod" qid="@moduli" value="1.0" uid="*G.Pa"
+					symbol="E" name="Young's Modulus" >
+			</input>
+			<input mid=".shmod" qid="@moduli" value="1.0" uid="*G.Pa"
+					symbol="G" name="Shear Modulus" >
+				<constraint>
+					<interval kind="prohibited" type="closedclosed" begin="0.0" end="0.0" />
+				</constraint>
+			</input>
+			<expression>1 - ygmod / (2 * shmod)</expression>
+		</calculation>
+
+		<calculation id="elong=lnull*strain" catid=".elongation" >
+			<title>Extension = f(Initial Length, Strain)</title>
+			<description>Calculate Extension from Strain and Initial Length</description>
+			<output mid=".elong" qid="@length" value="1" uid="*m.m"
+					symbol="dL" name="Extension" >
+			</output>
+			<input mid=".lnull" qid="@length" value="100.0" uid="*m.m"
+					symbol="L0" name="Initial Length" >
+			</input>
+			<input mid=".strain" qid="@strain" value="0.4" uid=".strainpercent"
+					symbol="eps" name="Strain" >
+			</input>
+			<expression>lnull * strain</expression>
+		</calculation>
+	</calculations>
+</calcspec>

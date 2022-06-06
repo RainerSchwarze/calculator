@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<unitdef>
+	<factors>
+		<factor id="*T" symbol="T" name="Tera" value="1e12" />
+		<factor id="*G" symbol="G" name="Giga" value="1e9" />
+		<factor id="*M" symbol="M" name="Mega" value="1e6" />
+		<factor id="*k" symbol="k" name="kilo" value="1e3" />
+		<factor id="*d" symbol="d" name="deci" value="1e-1" />
+		<factor id="*c" symbol="c" name="centi" value="1e-2" />
+		<factor id="*m" symbol="m" name="milli" value="1e-3" />
+		<factor id="*µ" symbol="µ" name="micro" value="1e-6" />
+		<factor id="*n" symbol="n" name="nano" value="1e-9" />
+		<factor id="*p" symbol="p" name="pico" value="1e-12" />
+		<factor id="*f" symbol="f" name="femto" value="1e-15" />
+	</factors>
+
+	<units>
+		<baseunit qtyId="LENGTH" id=".m" symbol="m" name="meter" />
+		<baseunit qtyId="TIME" id=".s" symbol="s" name="second" />
+		<baseunit qtyId="MASS" id=".g" symbol="g" name="gram" />
+		<baseunit qtyId="TEMPERATURE" id=".K" symbol="K" name="Kelvin" />
+		<baseunit qtyId="ELCURRENT" id=".A" symbol="A" name="Ampere" />
+		<baseunit qtyId="LUMINOSITY" id=".cd" symbol="cd" name="candela" />
+		<baseunit qtyId="AMTSUBSTANCE" id=".mol" symbol="mol" name="mole" />
+
+		<compunit>
+			<ufac id="*k" />
+			<umul id=".g" />
+		</compunit>
+		<compunit idvec="*k.mol" />
+		<compunit idvec="*m.mol" />
+		<compunit>
+			<ufac id="*k" />
+			<umul id=".m" />
+		</compunit>
+		<compunit>
+			<umul id=".m" />
+			<udiv id=".s" />
+		</compunit>
+		<compunit ubasid=".s" substid=".min" substsymbol="min" substname="Minute">
+			<converter type="mul" m="60" />
+		</compunit>
+		<compunit>
+			<converter type="mul">
+				<param name="m" value="3600" />
+			</converter>
+			<subst id=".h" symbol="h" name="Hour" />
+			<ubas id=".s" />
+		</compunit>
+		<compunit>
+			<umul id="*k.m" />
+			<udiv id=".h" />
+		</compunit>
+		<compunit>
+			<!-- TK = (TF + 459,67) / 1,8 -->
+			<!-- TK = 0.5555555556*TF + 255.372222222 -->
+			<converter type="lin">
+				<param name="m" value="0.5555555555555556" xvalue="10/18" />
+				<param name="n" value="255.37222222222222" xvalue="459.67/1.8" />
+			</converter>
+			<subst id=".°F" symbol="°F" name="Fahrenheit" />
+			<umul id=".K" />
+		</compunit>
+		<compunit>
+			<!-- TK = TC + 273.15 -->
+			<converter type="lin">
+				<param name="m" value="1.0" />
+				<param name="n" value="273.15" />
+			</converter>
+			<subst id=".°C" symbol="°C" name="Celsius" />
+			<umul id=".K" />
+		</compunit>
+		<compunit>
+			<umul id="*k.g" />
+			<umul id=".m" />
+			<udiv id=".s" />
+			<udiv id=".s" />
+		</compunit>
+		<compunit>
+			<subst id=".N" symbol="N" name="Newton" />
+			<umul id="*k.g" />
+			<umul id=".m" />
+			<udiv id=".s" />
+			<udiv id=".s" />
+		</compunit>
+	</units>
+</unitdef>
